@@ -1,3 +1,5 @@
 *.mov
 *.MOV
 *.txt
+*.wav
+vosk-model-en-us*
