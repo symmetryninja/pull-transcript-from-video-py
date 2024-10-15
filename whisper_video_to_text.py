@@ -26,13 +26,13 @@ def process_file(file_path, model):
     try:
         audio_path = extract_audio(file_path)
         transcription = transcribe_audio(audio_path, model)
-        
+
         output_path = file_path.rsplit('.', 1)[0] + '_transcription.txt'
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(transcription)
-        
+
         print(f"Transcription saved to {output_path}")
-        
+
         # Clean up the temporary audio file
         os.remove(audio_path)
     except Exception as e:
@@ -42,9 +42,9 @@ def process_input(input_path, model_size):
     print(f"Using Whisper model: {model_size}")
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Using device: {device}")
-    
+
     model = whisper.load_model(model_size, device=device)
-    
+
     if os.path.isfile(input_path):
         process_file(input_path, model)
     elif os.path.isdir(input_path):
